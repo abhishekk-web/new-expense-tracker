@@ -1,0 +1,47 @@
+body{
+
+    background-image: url("expense2.jpg");
+
+}
+
+.forms{
+
+    border: 3px solid black;
+    /* display: flex; */
+    text-align: center;
+    margin-top: 400px;
+    height: 400px;
+    width: 600px;
+    margin-left: 250px;
+    border-radius: 5px;
+    background-color: white;
+
+}
+
+#container {
+    height: 100%;
+    /* border: 2px solid black; */
+}
+
+.form1 {
+
+    font-weight: bold;
+    font-size:xx-large
+
+}
+
+.form2{
+
+    width: 400px;
+    height: 50px;
+    border-radius: 5px;
+
+}
+
+#form3 {
+
+    height: 40px;
+    width: 100px;
+    border-radius: 4px;
+
+}

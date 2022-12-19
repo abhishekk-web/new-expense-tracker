@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+
+        <title>Sign up page</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <link rel="stylesheet" href="signup.css">
+
+    </head>
+
+    <body>
+
+        <div id="container" class="container">
+
+            <form class="forms" onsubmit="signup(event)">
+
+                <label class="form1">Enter your name</label><br>
+                <input class="form2"  name="name" type="text" placeholder="Enter your name" required><br>
+                <label class="form1">Enter your email Id</label><br>
+                <input class="form2" type="email" name="email" placeholder="Enter your email" requried><br>
+                <label class="form1">Enter your password</label><br>
+                <input class="form2" type="password" name="password" placeholder="Enter your password" required><br><br>
+                <button id="form3" class="btn-success">Sign Up</button>
+
+            </form>
+
+        
+        </div>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.2.1/axios.min.js"></script>
+        <script src="signup.js"></script>
+    </body>
+
+</html>
