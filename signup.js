@@ -12,11 +12,11 @@ async function signup(e){
         }
         console.log(signupDetails);
 
-        const response = await axios.post("http://localhost:3000/user/signup", signupDetails);
-
+        const response = await axios.post("http://localhost:4000/signup", signupDetails);
+        console.log(response);
         if(response.status === 201){
 
-            console.log("login");
+            window.location.href = "../expenseTrackerUsingAxios.html"
 
         }
         else{
