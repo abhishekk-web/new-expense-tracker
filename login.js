@@ -13,6 +13,7 @@
     console.log(loginDetails);
     const response = await axios.post('http://localhost:4000/login', loginDetails)
             alert(response.data.message);
+            window.location.href = "../expenseTrackerUsingAxios.html"
     }
     catch(err) {
         console.log(JSON.stringify(err));
