@@ -16,7 +16,7 @@ async function signup(e){
         console.log(response);
         if(response.status === 201){
 
-            window.location.href = "../expenseTrackerUsingAxios.html"
+            window.location.href = "../login.html"
 
         }
         else{

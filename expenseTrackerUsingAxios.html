@@ -277,19 +277,22 @@
 
       const category = e.target.category.value;
 
+      const userId = 1
+
       const object = {
 
         expense,
         description,
-        category
+        category,
+        userId
 
       }
 
 
       // for post
 
-
-      axios.post("http://localhost:4000/data", object)
+      const token = localStorage.getItem('token')
+      axios.post("http://localhost:4000/data", object, {headers: {"Authorization": token}})
       .then((response)=>{
 
           showUser(response.data.allData);
@@ -308,9 +311,8 @@
 
     const getPost = window.addEventListener("DOMContentLoaded",() => {
 
-        
-
-      const data2 = axios.get("http://localhost:4000/getData")
+      const token = localStorage.getItem('token')
+      const data2 = axios.get("http://localhost:4000/getData", {headers: {"Authorization": token}})
         
 
           .then((response)=>{
@@ -352,7 +354,8 @@
     //
     function deleteUser(userId) {
 
-        axios.delete(`http://localhost:4000/deletedata/${userId}`)
+        const token = localStorage.getItem('token');
+        axios.delete(`http://localhost:4000/deletedata/${userId}`, {headers: {"Authorization": token}})
         .then((response)=>{
            
             removeuser(userId);

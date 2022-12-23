@@ -14,6 +14,7 @@
     const response = await axios.post('http://localhost:4000/login', loginDetails)
             alert(response.data.message);
             window.location.href = "../expenseTrackerUsingAxios.html"
+            localStorage.setItem('token', response.data.token);
     }
     catch(err) {
         console.log(JSON.stringify(err));
