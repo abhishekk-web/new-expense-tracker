@@ -1,4 +1,5 @@
 const token = localStorage.getItem("token");
+// const jwt = require('jsonwebtoken');
 
 
 function mySave(e){
@@ -29,7 +30,8 @@ function mySave(e){
 
     // for post
 
-    const token = localStorage.getItem('token')
+    
+    
     axios.post("http://localhost:4000/data", object, {headers: {"Authorization": token}})
     .then((response)=>{
 
@@ -45,15 +47,44 @@ function mySave(e){
 
     }
 
+    function premiumUser(){
+      document.getElementById("rzp-button1").style.visibility = "hidden";
+      document.getElementById("message").innerHTML = "<h1>You are a premium user</h1>";
+  }
+
+    function parseJwt (token) {
+      var base64Url = token.split('.')[1];
+      var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+      var jsonPayload = decodeURIComponent(window.atob(base64).split('').map(function(c) {
+          return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+      }).join(''));
+  
+      return JSON.parse(jsonPayload);
+  }
+
+  
+  
   // for get
 
   const getPost = window.addEventListener("DOMContentLoaded",() => {
+    const token = localStorage.getItem('token');
+    const decodeToken = parseJwt(token);
+    console.log(decodeToken);
+    const ispremiumuser = decodeToken.ispremiumuser;
+    console.log(ispremiumuser);
+    if(ispremiumuser){
 
-    const token = localStorage.getItem('token')
+      premiumUser();
+      showLeaderboard()
+
+    }
+    
     const data2 = axios.get("http://localhost:4000/getData", {headers: {"Authorization": token}})
       
+    
 
         .then((response)=>{
+
 
           console.log(response);
 
@@ -105,6 +136,27 @@ function mySave(e){
 
   }
 
+
+  function showLeaderboard(){
+    const inputElement = document.createElement("input");
+    inputElement.type="button";
+    inputElement.value = 'Show Leaderboard';
+    inputElement.style = "background-color: #008CBA; color: white; border: none; border-radius: 4px; height: 40px;"
+    inputElement.onclick = async() => {
+      const token = localStorage.getItem('token');
+      const userLeaderBoardArray = await axios.get("http://localhost:4000/premium/showLeaderBoard", {headers: {"Authorization": token}});
+      console.log(userLeaderBoardArray);
+
+      var leaderboardElem = document.getElementById('leaderboard');
+      leaderboardElem.innerHTML += '<h1>Leader Board</h1>';
+      userLeaderBoardArray.data.forEach((userDetails) => {
+        leaderboardElem.innerHTML += `<li style="text-decoration: none; font-weight: bold; color: black; border: 3px solid black; border-radius: 5px; margin-left: 350px; padding-top: 7px; width: 500px; height: 50px; margin-top: 20px;">Name - ${userDetails.name} Expense - ${userDetails.total_cost}</li>`;
+      })
+    }
+    document.getElementById("message").appendChild(inputElement);
+  }
+  
+
   function removeuser(userId){
 
   const parentNode = document.getElementById("listOfUsers");
@@ -134,7 +186,7 @@ function mySave(e){
   
 
     document.getElementById('rzp-button1').onclick = async function(e) {
-      const token = localStorage.getItem('token');
+      // const token = localStorage.getItem('token');
       const response = await axios.get('http://localhost:4000/purchase/premiummembership', {headers: {"Authorization": token}});
       console.log("the response is ",response);
 
@@ -143,12 +195,17 @@ function mySave(e){
         "key": response.data.key_id,
         "order_id": response.data.order.id,
         "handler": async function(response) {
-          await axios.post('http://localhost:4000/purchase/updatetransactionstatus', {
+          const res = await axios.post('http://localhost:4000/purchase/updatetransactionstatus', {
             order_id: options.order_id,
             payment_id: response.razorpay_payment_id,
           },{headers: {"Authorization": token }})
           
             alert('You are a Premium User Now')
+            document.getElementById("rzp-button1").style.visibility = "hidden";
+            document.getElementById("message").innerHTML = "<h1>You are a premium user</h1>";
+            localStorage.setItem('token', res.data.token);
+            console.log(res.data.token);
+            showLeaderboard()
         }
       };
 
