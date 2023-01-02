@@ -22,3 +22,7 @@
     }
 
 }
+
+function forgotpassword() {
+    window.location.href = "./forgot.html"
+}
