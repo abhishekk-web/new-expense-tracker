@@ -10,10 +10,13 @@
     <title>Document</title>
 </head>
 <body>
-    <form onsubmit="forgotpassword(event)">
-        <input type="email" name="email" required>
-        <button> Send Mail</button>
-    </form>
+    <div class="container">
+        <form class="forgot" onsubmit="forgotpassword(event)">
+            <label class="label">Please Enter your email id</label><br>
+            <input class="input" type="email" name="email" placeholder="Enter your email" required><br><br>
+            <button class="btn-success" id="button-forgot"> Send Mail</button>
+        </form>
+    </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js" integrity="sha512-bZS47S7sPOxkjU/4Bt0zrhEtWx0y0CRkhEp8IckzK+ltifIIE9EMIMTuT/mEzoIMewUINruDBIR/jJnbguonqQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="./forgot.js"></script>
 

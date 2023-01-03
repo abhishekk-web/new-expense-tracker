@@ -19,6 +19,12 @@ body{
 
 }
 
+#forgots {
+    margin-left: 480px;
+    height: 40px;
+    border-radius: 4px;
+}
+
 #container {
     height: 100%;
     /* border: 2px solid black; */

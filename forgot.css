@@ -1,0 +1,37 @@
+.container {
+    height: 100%;
+}
+
+.forgot {
+    border: 2px solid black;
+    margin-top: 400px;
+    text-align: center;
+    background-color: white;
+    height: 180px;
+    width: 800px;
+    border-radius: 4px;
+    border: 4px solid black;
+}
+
+body {
+    background-image: url("expense2.jpg");
+
+}
+
+.label {
+    font-size: 25px;
+    padding-top: 10px;
+    color: black;
+    font-weight: bold
+}
+
+.input {
+    padding-bottom: 10px;
+    width: 400px;
+    border: 2px solid black;
+    border-radius: 4px;
+}
+
+.button-forgot {
+    padding-top: 5px;
+}
