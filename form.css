@@ -1,0 +1,47 @@
+.header {
+    text-align: center;
+}
+
+#tables {
+    border: 1px solid grey;
+}
+
+.heads {
+    border-top: 2px solid grey;
+    background-color: cyan;
+}
+
+.right-border {
+    border-right: 1px solid grey;
+}
+
+.things-border {
+    border-right: 1px solid lightgrey;
+    border-top: 2px solid lightgrey;
+}
+
+.things-left-border {
+    border-left: 1px solid lightgrey;
+    border-right: 1px solid lightgrey;
+    border-top: 1px solid lightgrey'
+}
+
+.t-heads {
+    border-bottom: 2px solid lightgrey;
+}
+
+.things-bottom-border {
+    border-bottom: 1px solid lightgrey;
+    border-right: 1px solid lightgrey
+}
+
+.things-left-bottom-border {
+    border: 1px solid lightgrey;
+    text-align: right;
+    color: blue;
+}
+
+.things-left-bottom-color-border {
+    border: 1px solid lightgrey;
+    text-align: right;
+}
