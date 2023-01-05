@@ -219,14 +219,18 @@ function mySave(e){
       })
     }
 
+    function showError(err){
+      document.body.innerHTML += `<div style="color:red;"> ${err}</div>`
+  }
+
     function download(){
-      axios.get('http://localhost:3000/user/download', { headers: {"Authorization" : token} })
+      axios.get('http://localhost:4000/user/download', { headers: {"Authorization" : token} })
       .then((response) => {
           if(response.status === 201){
               //the bcakend is essentially sending a download link
               //  which if we open in browser, the file would download
               var a = document.createElement("a");
-              a.href = response.data.fileUrl;
+              a.href = response.data.fileURL;
               a.download = 'myexpense.csv';
               a.click();
           } else {
