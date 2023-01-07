@@ -1,5 +1,6 @@
 const token = localStorage.getItem("token");
 // const jwt = require('jsonwebtoken');
+const pagination = document.getElementById("pagination");
 
 
 function mySave(e){
@@ -66,7 +67,15 @@ function mySave(e){
   
   // for get
 
-  const getPost = window.addEventListener("DOMContentLoaded",() => {
+  window.addEventListener("DOMContentLoaded",() => {
+
+    const page = 1;
+    getPost(page);
+
+  })
+    function getPost(page) {
+      
+
     const token = localStorage.getItem('token');
     const decodeToken = parseJwt(token);
     console.log(decodeToken);
@@ -79,7 +88,8 @@ function mySave(e){
 
     }
     
-    const data2 = axios.get("http://localhost:4000/getData", {headers: {"Authorization": token}})
+    
+    const data2 = axios.get(`http://localhost:4000/getData?page=${page}`, {headers: {"Authorization": token}})
       
     
 
@@ -91,6 +101,8 @@ function mySave(e){
           for(var i=0;i<response.data.allData.length;i++){
 
             showUser(response.data.allData[i]);
+            showPagination(response.data.currentPage, response.data.hasNextPage, response.data.nextPage, response.data.hasPreviousPage, response.data.PreviousPage, response.data.lastPage);
+
 
           }
 
@@ -101,9 +113,9 @@ function mySave(e){
           console.log(err);
 
       })
-
+    }
     
-  })
+  
 
   function showUser(user) {
 
@@ -116,6 +128,7 @@ function mySave(e){
             </li>`;
 
     parentNode.innerHTML = parentNode.innerHTML + childHTML;
+
 
   }
 
@@ -242,4 +255,45 @@ function mySave(e){
           showError(err)
       });
   }
+
+  // window.addEventListener('DOMContentLoaded', (data) => {
+  //   const page = 1;
+    
+  //       getData(page);
+        
+  //   })
   
+
+  function showPagination(
+    currentPage,
+    hasNextPage,
+    nextPage,
+    hasPreviousPage,
+    PreviousPage,
+    lastPage
+) {
+
+    pagination.innerHTML = '';
+
+    if(hasPreviousPage){
+        const btn2 = document.createElement('button')
+        btn2.classList.add('active');
+        btn2.innerHTML = PreviousPage
+        btn2.addEventListener('click', () => getPost(PreviousPage));
+        pagination.appendChild(btn2)
+    }
+        const btn1 = document.createElement('button')
+        btn1.classList.add('active');
+        btn1.innerHTML = `<h3>${currentPage}</h3>`
+        btn1.addEventListener('click', () => getPost(currentPage));
+        pagination.appendChild(btn1);
+
+    if(hasNextPage) {
+        const btn3 = document.createElement('button');
+        btn3.classList.add('active');
+        btn3.innerHTML = nextPage
+        btn3.addEventListener('click', () => getPost(nextPage))
+        pagination.appendChild(btn3);
+    }
+    
+}
