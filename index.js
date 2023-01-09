@@ -103,7 +103,6 @@ function mySave(e){
             showUser(response.data.allData[i]);
             showPagination(response.data.currentPage, response.data.hasNextPage, response.data.nextPage, response.data.hasPreviousPage, response.data.PreviousPage, response.data.lastPage);
 
-
           }
 
 
@@ -128,6 +127,8 @@ function mySave(e){
             </li>`;
 
     parentNode.innerHTML = parentNode.innerHTML + childHTML;
+    
+
 
 
   }
